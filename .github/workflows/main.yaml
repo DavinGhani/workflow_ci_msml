@@ -9,6 +9,9 @@ jobs:
   train-and-build:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
       # Langkah 1: Download kode dari repository
       - name: 1. Check out code
