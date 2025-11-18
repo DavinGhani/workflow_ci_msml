@@ -63,9 +63,12 @@ jobs:
         run: |
           echo "Building Docker image with MLflow..."
           cd MLProject
-          mlflow models build-docker --model-uri "model" --name "thavn22/msml-model"
-          echo "Docker image built."
+      
+          IMAGE_WITH_TAG="thavn22/msml-model:latest"
+          
+          mlflow models build-docker --model-uri "model" --name "$IMAGE_WITH_TAG"
+          echo "Docker image built: $IMAGE_WITH_TAG"
           
           echo "Pushing Docker image to Docker Hub..."
-          docker push "thavn22/msml-model:latest"
+          docker push "$IMAGE_WITH_TAG"
           echo "Docker image pushed successfully."
