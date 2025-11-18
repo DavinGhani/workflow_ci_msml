@@ -59,17 +59,14 @@ jobs:
         shell: bash -l {0}
         run: |
           cd MLProject
-          # Kita beri nama lokal yang sederhana
           mlflow models build-docker --model-uri "model" --name "msml-model-local"
 
       # Langkah 8: Tag Docker Image 
       - name: 8. Tag Docker Image
         run: |
-          # Kita tag image lokal ke nama repository Docker Hub yang benar
           docker tag msml-model-local ${{ secrets.DOCKER_USERNAME }}/msml-model:latest
           
       # Langkah 9: Push Docker Image 
       - name: 9. Push Docker Image
         run: |
-          # Kita push tag yang baru saja kita buat
           docker push ${{ secrets.DOCKER_USERNAME }}/msml-model:latest
